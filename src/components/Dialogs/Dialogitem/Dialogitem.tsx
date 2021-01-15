@@ -3,10 +3,6 @@ import s from './../Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
 
 
-type PropsDialogGitType = {
-
-}
-
 
 export const DialogItem = (props) => {
 
@@ -15,9 +11,4 @@ export const DialogItem = (props) => {
     return <div className={s.dialogs + ' ' + s.active}>
         <NavLink to={path} activeClassName={s.active}>{props.name}</NavLink>
     </div>
-}
-
-
-let DialogGit = (PropsDialogGitType) => {
-
 }
