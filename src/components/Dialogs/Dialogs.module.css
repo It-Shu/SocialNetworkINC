@@ -1,7 +1,6 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
-
 }
 
 .dialogsItems {
@@ -21,9 +20,20 @@
 .messages {
     padding: 10px;
     color: #fff;
+    /* margin-left: 50px;*/
 
 }
 
 .messages .message {
 
+}
+
+.button {
+    width: 60px;
+    margin-top: 30px;
+}
+
+.textarea {
+    margin-left: 100px;
+    margin-top: 30px;
 }

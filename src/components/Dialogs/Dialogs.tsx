@@ -6,6 +6,7 @@ import {DialogsType} from "../../redux/state";
 
 type DialogsPropsType = {
     state: DialogsType
+    addPost: (postText: string) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -22,6 +23,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
+            <textarea className={s.textarea}/>
+            <button className={s.button} onClick={ () => {} }>Sent</button>
         </div>
     )
 }

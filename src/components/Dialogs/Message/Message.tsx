@@ -6,5 +6,8 @@ type PropsMessage = {
 }
 
 export const Message = (props: PropsMessage) => {
-    return <div className={s.dialogs}>{props.message}</div>
+    return <div className={s.dialogs}>
+
+        {props.message}
+    </div>
 }
