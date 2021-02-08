@@ -1,15 +1,28 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostType} from "../../../redux/state";
+
+type MyPostPropsType = {
+    posts: Array<PostType>
+}
+
+
+export const MyPosts = (props: MyPostPropsType) => {
+
+
+    const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>);
 
 
 
-export const MyPosts = (props) => {
+
+    const addPost = () => {
+        const addNewPosts =
+        alert("Empty Post")
+    }
 
 
-    let postsElements = props.state.posts.map ( p => <Post message={p.message} likesCount={p.likesCount}/> );
     return <div className={s.postsBlock}>
-
         <div>
             <h3>My posts</h3>
         </div>
@@ -17,7 +30,7 @@ export const MyPosts = (props) => {
             <textarea className={s.textareaMassage}/>
         </div>
         <div>
-            <button className={s.buttonPosts} type="submit"><span>Add post</span></button>
+            <button className={s.buttonPosts} type="submit" onClick={ addPost }><span>Add post</span></button>
         </div>
         <div>
             New post

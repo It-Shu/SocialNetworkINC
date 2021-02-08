@@ -1,37 +1,34 @@
-
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
 
 
-type DialogType = {
+export type DialogType = {
 
     id: number
     name: string
 }
 
-type PostType = {
+export type PostType = {
 
     id: number
     message: string
     likesCount: number
 }
 
-type ProfileType = {
+export type ProfileType = {
     posts: Array<PostType>
 }
 
-type DialogsType = {
+export type DialogsType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
 
-type SidebarType = {
+type SidebarType = {}
 
-}
-
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfileType
     dialogsPage: DialogsType
     sidebar: SidebarType
@@ -62,7 +59,5 @@ export let state: RootStateType = {
         ],
     },
 
-    sidebar: {
-
-    }
+    sidebar: {}
 }
