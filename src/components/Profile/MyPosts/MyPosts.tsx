@@ -17,8 +17,10 @@ export const MyPosts = (props: MyPostPropsType) => {
     let postMessageRef = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
+        debugger;
         if (postMessageRef.current) {
             props.addPost(postMessageRef.current.value)
+            alert(postMessageRef)
         }
     }
 

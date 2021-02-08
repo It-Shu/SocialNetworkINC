@@ -6,11 +6,20 @@ import {DialogsType} from "../../redux/state";
 
 type DialogsPropsType = {
     state: DialogsType
-    addPost: (postText: string) => void
+    addMessage: (messageText: string) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
 
+    let messageRef = React.createRef<HTMLTextAreaElement>();
+
+    const addMessage = () => {
+        debugger;
+        if (messageRef.current) {
+            props.addMessage(messageRef.current.value)
+            alert(messageRef)
+        }
+    }
 
     let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
     let messagesElements = props.state.messages.map(m => <Message message={m.message}/>)
@@ -23,8 +32,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
-            <textarea className={s.textarea}/>
-            <button className={s.button} onClick={ () => {} }>Sent</button>
+            <textarea className={s.textarea} ref={messageRef}/>
+            <button className={s.button} onClick={ addMessage }>Sent</button>
         </div>
     )
 }
