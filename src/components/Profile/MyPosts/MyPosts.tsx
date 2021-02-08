@@ -12,15 +12,13 @@ type MyPostPropsType = {
 export const MyPosts = (props: MyPostPropsType) => {
 
 
-    const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>);
+    const postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>);
 
     let postMessageRef = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        debugger;
         if (postMessageRef.current) {
             props.addPost(postMessageRef.current.value)
-            alert(postMessageRef)
         }
     }
 

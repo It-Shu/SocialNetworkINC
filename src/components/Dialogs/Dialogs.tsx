@@ -14,10 +14,8 @@ export const Dialogs = (props: DialogsPropsType) => {
     let messageRef = React.createRef<HTMLTextAreaElement>();
 
     const addMessage = () => {
-        debugger;
         if (messageRef.current) {
             props.addMessage(messageRef.current.value)
-            alert(messageRef)
         }
     }
 
