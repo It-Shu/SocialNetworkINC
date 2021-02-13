@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostType} from "../../../redux/state";
@@ -19,20 +19,18 @@ export const MyPosts = (props: MyPostPropsType) => {
                                                      message={p.message}
                                                      likesCount={p.likesCount}/>);
 
-    let postMessageRef = React.createRef<HTMLTextAreaElement>();
+   // let postMessageRef = React.createRef<HTMLTextAreaElement>();
 
 
     const addPost = () => {
-        if (postMessageRef.current) {
-            props.addPost(postMessageRef.current.value)
-        }
+            props.addPost(props.newPostText)
     }
 
-    const onPostChange = () => {
-        if (postMessageRef.current) {
-            props.updateNewPostText(postMessageRef.current.value)
-        }
+    const newPostChange = (e: ChangeEvent<HTMLTextAreaElement> ) => {
+
+        props.updateNewPostText(e.currentTarget.value)
     }
+
 
     return <div className={s.postsBlock}>
         <div>
@@ -40,8 +38,8 @@ export const MyPosts = (props: MyPostPropsType) => {
         </div>
         <div>
             <textarea className={s.textareaMassage}
-                      ref={postMessageRef}
-                      onChange={onPostChange}
+                      //ref={postMessageRef}
+                      onChange={ newPostChange }
                       value={props.newPostText}/>
         </div>
         <div>
