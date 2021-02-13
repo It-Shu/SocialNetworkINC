@@ -15,6 +15,7 @@ type AppType = {
     state: RootStateType
     addPost: (postText: string) => void
     addMessage: (messageText: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 const App = (props: AppType) => {
@@ -26,8 +27,10 @@ const App = (props: AppType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/dialog'} render={() => <Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>}/>
-                    <Route path={'/profile'} render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+                    <Route path={'/dialog'}
+                           render={() => <Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>}/>
+                    <Route path={'/profile'}
+                           render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/> }/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/setting'} render={() => <Settings/>}/>

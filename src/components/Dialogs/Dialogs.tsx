@@ -31,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 {messagesElements}
             </div>
             <textarea className={s.textarea} ref={messageRef}/>
-            <button className={s.button} onClick={ addMessage }>Sent</button>
+            <button className={s.button} onClick={addMessage}>Sent</button>
         </div>
     )
 }
