@@ -10,7 +10,7 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
 import {RootStateType} from "./redux/state";
 
-// Hi from notebook!!!
+
 type AppType = {
     state: RootStateType
     addPost: (postText: string) => void
