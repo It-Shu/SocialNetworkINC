@@ -1,3 +1,7 @@
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageTextCreator} from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 export type MessageType = {
     id: number
     message: string
@@ -124,7 +128,14 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === add_Post) {
+
+        this._state = profileReducer(this._state, action)
+         this._state = dialogsReducer(this._state, action)
+        this._state.sidebar = sidebarReducer(this._state, action)
+
+        this._callSubscriber()
+/*
+        if (action.type === ADD_POST) {
             const newPost: PostType = {
                 id: new Date().getTime(),
                 message: this._state.profilePage.newPostText,
@@ -134,13 +145,13 @@ export let store: StoreType = {
             this._state.profilePage.newPostText = '';
             this._callSubscriber()
 
-        } else if (action.type === update_New_Post_Text) {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber()
-        } else if (action.type === update_New_Message_Text) {
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessageText = action.body;
             this._callSubscriber()
-        } else if (action.type === Send_Message) {
+        } else if (action.type === SEND_MESSAGE) {
             let body = this._state.dialogsPage.newMessageText;
             const newMessage: MessageType = {
                 id: new Date().getTime(),
@@ -149,35 +160,10 @@ export let store: StoreType = {
             this._state.dialogsPage.newMessageText = '';
             this._state.dialogsPage.messages.push(newMessage)
             this._callSubscriber()
-        }
+        }*/
     }
 }
 
-const add_Post = "Add-Post";
-
-const update_New_Post_Text = "Update-New-Post-Text";
-
-const update_New_Message_Text = "Update-New-Message-Text";
-
-const Send_Message = "Send-Message"
-
-
-export const addPostActionCreator = (newPostText: string) => ({
-    type: add_Post,
-    newPostText: newPostText
-}) as const
-
-export const updateNewPostTextActionCreator = (newText: string) => ({
-    type: update_New_Post_Text,
-    newText: newText
-}) as const
-
-export const updateNewMessageTextCreator = (body: string) => ({
-    type: update_New_Message_Text,
-    body: body
-}) as const
-
-export const sendMessageCreator = () => ({type: Send_Message}) as const
 
 
 /*let rerenderEntireTree = () => {
