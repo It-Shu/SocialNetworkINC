@@ -1,23 +1,38 @@
-import {ActionsTypes, MessageType, RootStateType} from "./state";
+import {ActionsTypes, DialogsType, MessageType, RootStateType} from "./store";
 
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE"
 
-const dialogsReducer = (state: RootStateType, action: ActionsTypes) => {
+let initialState: DialogsType = {
+    dialogs: [
+        {id: 1, name: 'Sergei'},
+        {id: 2, name: 'Olenka'}
+    ],
+    messages: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'I Love you'},
+        {id: 3, message: 'Soo mach'}
+    ],
+
+    newMessageText: '',
+
+}
+
+const dialogsReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {
-            state.dialogsPage.newMessageText = action.body;
+            state.newMessageText = action.body;
             return state
         }
 
         case SEND_MESSAGE: {
-            let body = state.dialogsPage.newMessageText;
+            let body = state.newMessageText;
             const newMessage: MessageType = {
                 id: new Date().getTime(),
                 message: body
             }
-            state.dialogsPage.newMessageText = '';
-            state.dialogsPage.messages.push(newMessage)
+            state.newMessageText = '';
+            state.messages.push(newMessage)
             return state
         }
         default:
