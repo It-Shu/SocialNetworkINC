@@ -8,9 +8,10 @@ import {
      StoreType,
 } from "../../redux/store";
 import {sendMessageCreator, updateNewMessageTextCreator} from "../../redux/dialogs-reducer";
+import {StoreReducersType} from "../../redux/redux-store";
 
 type DialogsPropsType = {
-    store: StoreType
+    store: StoreReducersType
    // state: DialogsType
     // addMessage: (messageText: string) => void
     // newMessageText: string

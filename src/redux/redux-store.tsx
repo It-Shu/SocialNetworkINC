@@ -2,9 +2,13 @@ import {createStore, combineReducers} from "redux"
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {ActionsTypes, RootStateType} from "./store";
 
-type StoreReducersType = {
+export type StoreReducersType = {
 
+    getState: () => RootStateType
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const reducers = combineReducers({

@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
 import {ActionsTypes, RootStateType, StoreType} from "./redux/store";
+import {StoreReducersType} from "./redux/redux-store";
 
 
 /*type AppType = {
@@ -18,7 +19,7 @@ import {ActionsTypes, RootStateType, StoreType} from "./redux/store";
     updateNewPostText: (newText: string) => void
 }*/
 type AppType = {
-    store: StoreType
+    store: StoreReducersType
     state: RootStateType
     // addPost: (postText: string) => void
     //  addMessage: (messageText: string) => void
