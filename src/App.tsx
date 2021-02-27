@@ -8,8 +8,8 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
-import {ActionsTypes, RootStateType, StoreType} from "./redux/store";
-import {StoreReducersType} from "./redux/redux-store";
+import {ActionsTypes, RootStateType} from "./redux/store";
+import {ReducersStoreType} from "./redux/redux-store";
 
 
 /*type AppType = {
@@ -19,7 +19,7 @@ import {StoreReducersType} from "./redux/redux-store";
     updateNewPostText: (newText: string) => void
 }*/
 type AppType = {
-    store: StoreReducersType
+    store: ReducersStoreType
     state: RootStateType
     // addPost: (postText: string) => void
     //  addMessage: (messageText: string) => void

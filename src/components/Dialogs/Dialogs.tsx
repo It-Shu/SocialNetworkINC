@@ -2,16 +2,12 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./Dialogitem/Dialogitem";
-import {
-    ActionsTypes,
-    DialogsType,
-     StoreType,
-} from "../../redux/store";
+import {ActionsTypes,} from "../../redux/store";
 import {sendMessageCreator, updateNewMessageTextCreator} from "../../redux/dialogs-reducer";
-import {StoreReducersType} from "../../redux/redux-store";
+import {ReducersStoreType} from "../../redux/redux-store";
 
 type DialogsPropsType = {
-    store: StoreReducersType
+    store: ReducersStoreType
    // state: DialogsType
     // addMessage: (messageText: string) => void
     // newMessageText: string

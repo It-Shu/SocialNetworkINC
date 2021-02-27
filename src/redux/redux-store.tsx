@@ -4,7 +4,7 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {ActionsTypes, RootStateType} from "./store";
 
-export type StoreReducersType = {
+export type ReducersStoreType = {
     getState: () => RootStateType
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsTypes) => void
