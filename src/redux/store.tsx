@@ -8,7 +8,6 @@ export type MessageType = {
 
 }
 
-
 export type DialogType = {
 
     id: number
@@ -44,13 +43,9 @@ export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
-    // addPost: () => void
-    // addMessage: (messageText: string) => void
-    //updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsTypes) => void
 }
-
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
@@ -97,31 +92,7 @@ export let store: StoreType = {
         console.log("State change")
     },
 
-    /* addPost() {
-         const newPost: PostType = {
-             id: new Date().getTime(),
-             message: this._state.profilePage.newPostText,
-             likesCount: 0
-         }
-         this._state.profilePage.posts.push(newPost)
-         this._state.profilePage.newPostText = '';
-         this._callSubscriber()
-     },*/
 
-    /* addMessage(messageText: string) {
-         const newMessage: MessageType = {
-             id: new Date().getTime(),
-             message: messageText
-         }
-         this._state.dialogsPage.messages.push(newMessage)
-         //this._state.dialogsPage.newMessageText = '';
-         this._callSubscriber()
-     },*/
-
-    /*updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber()
-    },*/
 
     subscribe(observer) {
         this._callSubscriber = observer
@@ -134,6 +105,51 @@ export let store: StoreType = {
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._callSubscriber()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* addPost() {
+     const newPost: PostType = {
+         id: new Date().getTime(),
+         message: this._state.profilePage.newPostText,
+         likesCount: 0
+     }
+     this._state.profilePage.posts.push(newPost)
+     this._state.profilePage.newPostText = '';
+     this._callSubscriber()
+ },*/
+
+        /* addMessage(messageText: string) {
+             const newMessage: MessageType = {
+                 id: new Date().getTime(),
+                 message: messageText
+             }
+             this._state.dialogsPage.messages.push(newMessage)
+             //this._state.dialogsPage.newMessageText = '';
+             this._callSubscriber()
+         },*/
+
+        /*updateNewPostText(newText: string) {
+            this._state.profilePage.newPostText = newText;
+            this._callSubscriber()
+        },*/
+
+
+
+
 /*
         if (action.type === ADD_POST) {
             const newPost: PostType = {

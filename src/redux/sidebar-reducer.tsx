@@ -1,4 +1,4 @@
-import {ActionsTypes, RootStateType, SidebarType} from "./store";
+import {ActionsTypes, SidebarType} from "./store";
 
 
 let initialState: SidebarType = {}

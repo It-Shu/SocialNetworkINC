@@ -1,4 +1,4 @@
-import {ActionsTypes, PostType, ProfileType, RootStateType} from "./store";
+import {ActionsTypes, PostType, ProfileType} from "./store";
 
 
 const ADD_POST = "ADD-POST";

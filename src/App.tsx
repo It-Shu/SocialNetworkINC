@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
 import {ActionsTypes, RootStateType} from "./redux/store";
 import {ReducersStoreType} from "./redux/redux-store";
+import {DialogsContainer} from "./components/Dialogs/Message/DialogsContainer";
 
 
 /*type AppType = {
@@ -37,14 +38,15 @@ const App: React.FC<AppType> = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialog'}
-                           render={() => <Dialogs store={props.store}
+                           render={() => <DialogsContainer store={props.store}
                                                   // state={props.store.getState().dialogsPage}
                                // addMessage={props.store.addMessage.bind(props.store)}
                                /* newMessageText={props.store.getState().dialogsPage.newMessageText}*/
-                                                  dispatch={props.store.dispatch.bind(props.store)}
+                                                 // dispatch={props.store.dispatch.bind(props.store)}
                            />}/>
                     <Route path={'/profile'}
-                           render={() => <Profile profilePage={props.store.getState().profilePage}
+                           render={() => <Profile store={props.store}
+                               // profilePage={props.store.getState().profilePage}
                                // addPost={props.store.addPost.bind(props.store)}
                                                   dispatch={props.store.dispatch.bind(props.store)}
                                // updateNewPostText={props.store.updateNewPostText.bind(props.store)}

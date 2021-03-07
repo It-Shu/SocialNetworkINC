@@ -6,10 +6,10 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../red
 
 type MyPostPropsType = {
     posts: Array<PostType>
-    //addPost: (postText: string) => void
-    //updateNewPostText: (newText: string) => void
+    addPost: (postText: string) => void
+    updateNewPostText: (newText: string) => void // ( newText: string) => void
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+   // dispatch: (action: ActionsTypes) => void
 }
 
 
@@ -24,14 +24,15 @@ export const MyPosts = (props: MyPostPropsType) => {
     // let postMessageRef = React.createRef<HTMLTextAreaElement>();
 
 
-    const addPost = () => {
-        // props.addPost(props.newPostText)
-        props.dispatch(addPostActionCreator(props.newPostText))
+    const onAddPost = () => {
+         props.addPost(props.newPostText)
+       // props.dispatch(addPostActionCreator(props.newPostText))
     }
 
-    const newPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.updateNewPostText(e.currentTarget.value)
-        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let newText = e.currentTarget.value
+         props.updateNewPostText(newText)
+       // props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
     }
 
 
@@ -42,13 +43,13 @@ export const MyPosts = (props: MyPostPropsType) => {
         <div>
             <textarea className={s.textareaMassage}
                 //ref={postMessageRef}
-                      onChange={newPostChange}
+                      onChange={onPostChange}
                       value={props.newPostText}/>
         </div>
         <div>
             <button className={s.buttonPosts}
                     type="submit"
-                    onClick={addPost}><span>Add post</span>
+                    onClick={onAddPost}><span>Add post</span>
             </button>
         </div>
         <div>
