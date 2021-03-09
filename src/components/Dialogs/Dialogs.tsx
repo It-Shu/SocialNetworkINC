@@ -7,7 +7,7 @@ import {sendMessageCreator, updateNewMessageTextCreator} from "../../redux/dialo
 import {ReducersStoreType} from "../../redux/redux-store";
 
 type DialogsPropsType = {
-    store: ReducersStoreType
+   // store: ReducersStoreType
    // state: DialogsType
     // addMessage: (messageText: string) => void
     // newMessageText: string

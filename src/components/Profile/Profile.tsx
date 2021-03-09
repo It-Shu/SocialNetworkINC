@@ -6,21 +6,22 @@ import {ActionsTypes, ProfileType} from "../../redux/store";
 import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
 import {ReducersStoreType} from "../../redux/redux-store";
 
-type ProfilePropsType = {
+/*type ProfilePropsType = {
     store: ReducersStoreType
     //addPost: (postText: string) => void
     //updateNewPostText:  (newText: string) => void
    // profilePage: ProfileType
     dispatch: (action: ActionsTypes) => void
-}
+}*/
 
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = (/*props: ProfilePropsType*/) => {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}
+            <MyPostsContainer
+                // store={props.store}
                // posts={props.profilePage.posts}
                 //addPost={props.addPost}
                 //updateNewPostText={props.updateNewPostText}

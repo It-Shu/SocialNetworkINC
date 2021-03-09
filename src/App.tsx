@@ -19,16 +19,16 @@ import {DialogsContainer} from "./components/Dialogs/Message/DialogsContainer";
     addMessage: (messageText: string) => void
     updateNewPostText: (newText: string) => void
 }*/
-type AppType = {
+/*type AppType = {
     store: ReducersStoreType
     state: RootStateType
     // addPost: (postText: string) => void
     //  addMessage: (messageText: string) => void
     // updateNewPostText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
-}
+}*/
 
-const App: React.FC<AppType> = (props) => {
+const App/*: React.FC<AppType> */ = (/*props*/) => {
     //  const store = props.store.getState();
 
     return (
@@ -38,17 +38,19 @@ const App: React.FC<AppType> = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialog'}
-                           render={() => <DialogsContainer store={props.store}
-                                                  // state={props.store.getState().dialogsPage}
+                           render={() => <DialogsContainer
+                               // store={props.store}
+                               // state={props.store.getState().dialogsPage}
                                // addMessage={props.store.addMessage.bind(props.store)}
                                /* newMessageText={props.store.getState().dialogsPage.newMessageText}*/
-                                                 // dispatch={props.store.dispatch.bind(props.store)}
+                               // dispatch={props.store.dispatch.bind(props.store)}
                            />}/>
                     <Route path={'/profile'}
-                           render={() => <Profile store={props.store}
+                           render={() => <Profile
+                               // store={props.store}
                                // profilePage={props.store.getState().profilePage}
                                // addPost={props.store.addPost.bind(props.store)}
-                                                  dispatch={props.store.dispatch.bind(props.store)}
+                               //  dispatch={props.store.dispatch.bind(props.store)}
                                // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                            />}/>
                     <Route path={'/music'} render={() => <Music/>}/>
