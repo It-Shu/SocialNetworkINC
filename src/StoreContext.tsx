@@ -1,4 +1,6 @@
+
 import React from "react";
+/*
 import {ReducersStoreType} from "./redux/redux-store";
 
 
@@ -17,4 +19,4 @@ export const Provider = (props: ProviderPropsType) => {
 }
 
 
-export default StoreContext;
+export default StoreContext;*/

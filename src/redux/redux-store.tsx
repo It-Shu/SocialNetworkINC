@@ -10,13 +10,13 @@ export type ReducersStoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer
 })
 
-const store = createStore(reducers);
+const store = createStore(rootReducer);
 
 
 export default store;

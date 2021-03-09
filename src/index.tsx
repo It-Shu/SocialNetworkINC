@@ -6,12 +6,12 @@ import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import {RootStateType} from "./redux/store";
-import StoreContext from "./StoreContext"
-import {Provider} from './StoreContext';
+import {Provider} from 'react-redux';
+/*
 
 const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
-       /* <React.StrictMode>
+       /!* <React.StrictMode>
             <StoreContext.Provider value={store}>
                 <App />
             {/!*<App store={store}
@@ -23,7 +23,7 @@ const rerenderEntireTree = (state: RootStateType) => {
             />*!/}
 
             </StoreContext.Provider>
-        </React.StrictMode>,*/
+        </React.StrictMode>,*!/
         <React.StrictMode>
             <Provider store={store}>
                 <App />
@@ -32,7 +32,16 @@ const rerenderEntireTree = (state: RootStateType) => {
         document.getElementById('root')
     );
 }
+*/
+ReactDOM.render(
+<React.StrictMode>
+    <Provider store={store}>
+        <App />
+    </Provider>
+</React.StrictMode>,
+    document.getElementById('root'));
 
+/*
 
 rerenderEntireTree(store.getState());
 
@@ -40,6 +49,7 @@ store.subscribe( () => {
     let state = store.getState();
     rerenderEntireTree(state);
 })
+*/
 
 
 // If you want to start measuring performance in your app, pass a function
