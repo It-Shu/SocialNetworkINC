@@ -8,14 +8,11 @@ import {UsersPropsType} from "./UsersContainer";
 
 class Users extends React.Component <UsersPropsType> {
 
-    constructor(props:UsersPropsType) {
-        super(props)
-
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then(response => { // then is promise !!!!
                 this.props.setUsers(response.data.items)
             })
-
     }
 
 
