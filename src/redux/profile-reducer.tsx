@@ -1,4 +1,5 @@
-import {ActionsTypes, PostType, ProfileType} from "./store";
+import { ProfileType} from "./store";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 
 const ADD_POST = "ADD-POST";
@@ -13,7 +14,7 @@ let initialState: ProfileType = {
     newPostText: ''
 }
 
-const profileReducer = (state = initialState, action: ActionsTypes) => {
+const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST: {
             let body = state.newPostText
@@ -47,14 +48,17 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
     }
 }
 
-export const addPostActionCreator = (newPostText: string) => ({
+export const addPostAC = (newPostText: string) => ({
     type: ADD_POST,
     newPostText: newPostText
 }) as const
 
-export const updateNewPostTextActionCreator = (newText: string) => ({
+export const updateNewPostTextAC = (newText: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
 }) as const
+
+type ProfileActionsType =
+    ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 
 export default profileReducer;

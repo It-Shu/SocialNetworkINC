@@ -1,11 +1,44 @@
 import {MyPosts} from "../MyPosts";
-import {ActionsTypes, PostType, RootStateType} from "../../../../redux/store";
-import {ChangeEvent} from "react";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/profile-reducer";
-import store, {ReducersStoreType} from "../../../../redux/redux-store";
-import {sendMessageCreator, updateNewMessageTextCreator} from "../../../../redux/dialogs-reducer";
+import {RootStateType} from "../../../../redux/store";
+import {addPostAC, updateNewPostTextAC} from "../../../../redux/profile-reducer";
+import store from "../../../../redux/redux-store";
 import {connect} from "react-redux";
-import {Dialogs} from "../../../Dialogs/Dialogs";
+
+
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPost: () => {
+            dispatch(addPostAC(store.getState().profilePage.newPostText))
+
+        },
+        updateNewPostText: (newText: string) => {
+            dispatch(updateNewPostTextAC(newText))
+        }
+    }
+}
+
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 type MyPostContainerPropsType = {
@@ -60,22 +93,3 @@ export const MyPostsContainer = (/!*props: MyPostContainerPropsType*!/) => {
 
 
 
-const mapStateToProps = (state: RootStateType) => {
-    return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
-    }
-}
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        addPost: () => {
-            dispatch(addPostActionCreator(store.getState().profilePage.newPostText))
-
-        },
-        updateNewPostText: (newText: string) => {
-            dispatch(updateNewPostTextActionCreator(newText))
-        }
-    }
-}
-
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts);

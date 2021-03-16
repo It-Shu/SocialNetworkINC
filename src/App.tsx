@@ -8,16 +8,15 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
-import {ActionsTypes, RootStateType} from "./redux/store";
-import {ReducersStoreType} from "./redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/Message/DialogsContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 /*type AppType = {
     state: RootStateType
     addPost: (postText: string) => void
     addMessage: (messageText: string) => void
-    updateNewPostText: (newText: string) => void
+    updateNewPostText: (newText: stri ng) => void
 }*/
 /*type AppType = {
     store: ReducersStoreType
@@ -34,13 +33,13 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <Header />
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialog'}
                            render={() => <DialogsContainer
                                // store={props.store}
-                               // state={props.store.getState().dialogsPage}
+                               // state={props.store. getState().dialogsPage}
                                // addMessage={props.store.addMessage.bind(props.store)}
                                /* newMessageText={props.store.getState().dialogsPage.newMessageText}*/
                                // dispatch={props.store.dispatch.bind(props.store)}
@@ -56,6 +55,7 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/setting'} render={() => <Settings/>}/>
+                    <Route path={'/users'} render={() => <UsersContainer/>}/>
                 </div>
             </div>
         </BrowserRouter>
