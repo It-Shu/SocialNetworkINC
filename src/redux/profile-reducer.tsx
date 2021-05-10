@@ -1,5 +1,5 @@
 import { ProfileType} from "./store";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {follow, setUsers, unfollow} from "./users-reducer";
 
 
 const ADD_POST = "ADD-POST";

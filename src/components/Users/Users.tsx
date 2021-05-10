@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import {UsersPropsType} from "./UsersContainer";
 import {initialStateType} from "../../redux/users-reducer";
+import { NavLink } from "react-router-dom";
 
 type UsersType = {
     usersPage: initialStateType
@@ -15,37 +15,40 @@ type UsersType = {
 }
 
 
-
 const Users = (props: UsersType) => {
 
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     const pages = [];
+
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    console.log(pagesCount)
 
     return (
         <div>
+
             <div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p ? s.selectedPage : ''}
+                {pages.map(pageNumber => {
+                    return <span className={props.currentPage === pageNumber ? s.selectedPage : ''}
                                  onClick={(e) => {
-                                     props.onPageChanged(p)
-                                 }}>{p}</span>
+                                     props.onPageChanged(pageNumber)
+                                 }}>{pageNumber}</span>
                 })}
             </div>
             {
-               props.usersPage.users.map(u => <div key={u.id}>
+                props.usersPage.users.map(u => <div key={u.id}>
 <span>
     <div>
-
-        <img
-            src={/*u.photos.small !=null ? u.photos.small :*/ userPhoto} className={s.userPhoto}/>
+        <NavLink to={'/profile/' + u.id}>
+            <img
+                src={/*u.photos.small !=null ? u.photos.small :*/ userPhoto} className={s.userPhoto}/>
+        </NavLink>
     </div>
     <div>
         {u.followed
             ? <button onClick={() => {
-               props.unfollow(u.id)
+                props.unfollow(u.id)
             }}>UnFollow</button>
             : <button onClick={() => {
                 props.follow(u.id)

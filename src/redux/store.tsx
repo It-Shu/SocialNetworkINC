@@ -1,7 +1,7 @@
 import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {follow, setUsers, unfollow} from "./users-reducer";
 
 export type MessageType = {
     id: number
