@@ -107,7 +107,7 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => {
     }
 }*/ // connect создаст mapDispatchToProps сам!!!
 
-// Проверка Гита !!!
+// Проверка Гита V-2.0!!!
 
 
 export default connect(mapStateToProps, {
