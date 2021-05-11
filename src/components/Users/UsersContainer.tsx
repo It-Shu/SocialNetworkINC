@@ -23,7 +23,7 @@ type mapStatePropsType = {
     isFetching: boolean
 }
 
-type mapDispatchPropsType = {
+type mapDispatchUsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
@@ -32,7 +32,7 @@ type mapDispatchPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
+export type UsersPropsType = mapStatePropsType & mapDispatchUsersPropsType
 
 
 class UsersContainer extends React.Component <UsersPropsType> {
@@ -106,8 +106,6 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => {
         }
     }
 }*/ // connect создаст mapDispatchToProps сам!!!
-
-// Проверка Гита V-2.0!!!
 
 
 export default connect(mapStateToProps, {

@@ -1,4 +1,4 @@
-import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
+import profileReducer, {addPostAC, ProfileType, updateNewPostTextAC} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {follow, setUsers, unfollow} from "./users-reducer";
@@ -21,10 +21,7 @@ export type PostType = {
     likesCount: number
 }
 
-export type ProfileType = {
-    posts: Array<PostType>
-    newPostText: string
-}
+
 
 export type DialogsType = {
     messages: Array<MessageType>
@@ -58,7 +55,8 @@ export let store: StoreType = {
                 {id: 2, message: 'It`s my first post.', likesCount: 14},
                 {id: 3, message: 'Omg', likesCount: 19},
             ],
-            newPostText: ''
+            newPostText: '',
+            profile: null
 
         },
 

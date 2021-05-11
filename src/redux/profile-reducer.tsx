@@ -1,9 +1,42 @@
-import { ProfileType} from "./store";
-import {follow, setUsers, unfollow} from "./users-reducer";
+import {PostType} from "./store";
 
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+
+export type ProfileType = {
+    posts: Array<PostType>
+    newPostText: string
+    profile: null
+}
+
+type ProfileUsersContact = {
+    facebook: string,
+    website: null,
+    vk: string,
+    twitter: string,
+    instagram: string,
+    youtube: null,
+    github: string,
+    mainLink: null
+}
+
+type PhotosType = {
+    small: string
+    large: string
+}
+
+export type ProfileUsersType = {
+    aboutMe: string
+    contacts: Array<ProfileUsersContact>
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotosType
+}
+
 
 let initialState: ProfileType = {
     posts: [
@@ -11,14 +44,15 @@ let initialState: ProfileType = {
         {id: 2, message: 'It`s my first post.', likesCount: 14},
         {id: 3, message: 'Omg', likesCount: 19},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null,
 }
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST: {
             let body = state.newPostText
-            return  {
+            return {
                 ...state,
                 newPostText: '',
                 posts: [...state.posts, {
@@ -27,21 +61,24 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
                     likesCount: 0
                 }],
             }
-         /*
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: newState.body,
-                likesCount: 0
-            }
-            newState.posts.push(newPost)
-            newState.newPostText = '';*/
+            /*
+               const newPost: PostType = {
+                   id: new Date().getTime(),
+                   message: newState.body,
+                   likesCount: 0
+               }
+               newState.posts.push(newPost)
+               newState.newPostText = '';*/
         }
         case UPDATE_NEW_POST_TEXT: {
-           return  {
+            return {
                 ...state,
                 newPostText: action.newText,
             }
-           // newState.newPostText = action.newText;
+            // newState.newPostText = action.newText;
+        }
+        case "SET_USER_PROFILE": {
+            return {...state, profile: action.profile}
         }
         default:
             return state
@@ -58,7 +95,14 @@ export const updateNewPostTextAC = (newText: string) => ({
     newText: newText
 }) as const
 
+export const setUserProfile = (profile: any) => ({
+    type: SET_USER_PROFILE,
+    profile
+}) as const
+
 type ProfileActionsType =
-    ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof setUserProfile>
 
 export default profileReducer;

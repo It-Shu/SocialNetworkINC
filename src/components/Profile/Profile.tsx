@@ -1,21 +1,23 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
 import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
+import {ProfileUsersType} from "../../redux/profile-reducer";
 
-/*type ProfilePropsType = {
-    store: ReducersStoreType
+type ProfilePropsType = {
+    //store: ReducersStoreType
     //addPost: (postText: string) => void
     //updateNewPostText:  (newText: string) => void
    // profilePage: ProfileType
-    dispatch: (action: ActionsTypes) => void
-}*/
+   // dispatch: (action: ActionsTypes) => void
+    profile: ProfileUsersType
+}
 
 
-export const Profile = (/*props: ProfilePropsType*/) => {
+export const Profile = (props: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer
                 // store={props.store}
                // posts={props.profilePage.posts}
