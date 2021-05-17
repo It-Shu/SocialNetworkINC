@@ -1,7 +1,32 @@
-import { DialogsType} from "./store";
+import {ProfileType} from "./profile-reducer";
+import { SidebarType } from "./sidebar-reducer";
 
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE"
+
+
+export type RootStateType = {
+    profilePage: ProfileType
+    dialogsPage: DialogsType
+    sidebar: SidebarType
+}
+
+type MessageType = {
+    id: number
+    message: string
+
+}
+
+export type DialogType = {
+    id: number
+    name: string
+}
+
+export type DialogsType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+    newMessageText: string
+}
 
 let initialState: DialogsType = {
     dialogs: [

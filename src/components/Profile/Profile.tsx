@@ -7,8 +7,8 @@ type ProfilePropsType = {
     //store: ReducersStoreType
     //addPost: (postText: string) => void
     //updateNewPostText:  (newText: string) => void
-   // profilePage: ProfileType
-   // dispatch: (action: ActionsTypes) => void
+    // profilePage: ProfileType
+    // dispatch: (action: ActionsTypes) => void
     profile: ProfileUsersType
 }
 
@@ -20,11 +20,11 @@ export const Profile = (props: ProfilePropsType) => {
             <ProfileInfo profile={props.profile}/>
             <MyPostsContainer
                 // store={props.store}
-               // posts={props.profilePage.posts}
+                // posts={props.profilePage.posts}
                 //addPost={props.addPost}
                 //updateNewPostText={props.updateNewPostText}
-                    // dispatch={props.dispatch.bind(props.profilePage)}
-                    // newPostText={props.profilePage.newPostText}
+                // dispatch={props.dispatch.bind(props.profilePage)}
+                // newPostText={props.profilePage.newPostText}
             />
         </div>
     )

@@ -10,13 +10,12 @@ type ProfileInfoType = {
 export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
         return <div>
-        <Preloader/>
+            <Preloader/>
         </div>
     }
 
     return (
         <div>
-
             <div>
                 <img src={'https://fireinspire.com.ua/wp-content/uploads/2017/01/maxresdefault-6.jpg'}/>
             </div>
@@ -24,7 +23,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={props.profile.photos.large}/>
                 <div>avatar + description</div>
             </div>
-
         </div>
     )
 }

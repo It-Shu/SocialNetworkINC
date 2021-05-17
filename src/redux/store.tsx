@@ -3,48 +3,18 @@ import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogs-r
 import sidebarReducer from "./sidebar-reducer";
 import {follow, setUsers, unfollow} from "./users-reducer";
 
-export type MessageType = {
-    id: number
-    message: string
-
-}
-
-export type DialogType = {
-
-    id: number
-    name: string
-}
-
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-
-
-export type DialogsType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogType>
-    newMessageText: string
-}
-
-export type SidebarType = {}
-
-export type RootStateType = {
-    profilePage: ProfileType
-    dialogsPage: DialogsType
-    sidebar: SidebarType
-}
+/*
 
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
-   // dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 }
+*/
 
+/*
 
 export let store: StoreType = {
     _state: {
@@ -91,7 +61,7 @@ export let store: StoreType = {
         this._callSubscriber = observer
     },
 
-/*
+/!*
     dispatch(action) {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
@@ -100,6 +70,7 @@ export let store: StoreType = {
 
         this._callSubscriber()
 
-    }*/
+    }*!/
 }
 
+*/

@@ -1,14 +1,19 @@
-import {PostType} from "./store";
-
-
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+
+// Profile types
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 export type ProfileType = {
     posts: Array<PostType>
     newPostText: string
     profile: null
+    description: DescriptionsType
 }
 
 type ProfileUsersContact = {
@@ -37,6 +42,25 @@ export type ProfileUsersType = {
     photos: PhotosType
 }
 
+// Descriptions types
+
+export type DescriptionsType = {
+    userId: number,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    contacts: {
+        github: string,
+        vk: string,
+        facebook: string,
+        instagram: string,
+        twitter: string,
+        website: string,
+        youtube: string,
+        mainLink: string,
+    }
+}
+
 
 let initialState: ProfileType = {
     posts: [
@@ -46,6 +70,22 @@ let initialState: ProfileType = {
     ],
     newPostText: '',
     profile: null,
+    description: {
+        userId: 2,
+        lookingForAJob: true,
+        lookingForAJobDescription: '',
+        fullName: '',
+        contacts: {
+            github: 'string',
+            vk: 'string',
+            facebook: 'string',
+            instagram: 'string',
+            twitter: 'string',
+            website: 'string',
+            youtube: 'string',
+            mainLink: 'string',
+        }
+    }
 }
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {

@@ -15,7 +15,7 @@ import ProfileContainer from "./components/Profile/ProfileCoontainer";
     state: RootStateType
     addPost: (postText: string) => void
     addMessage: (messageText: string) => void
-    updateNewPostText: (newText: stri ng) => void
+    updateNewPostText: (newText: string) => void
 }*/
 /*type AppType = {
     store: ReducersStoreType
@@ -32,7 +32,7 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header />
+                <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialog'}
@@ -43,7 +43,7 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
                                /* newMessageText={props.store.getState().dialogsPage.newMessageText}*/
                                // dispatch={props.store.dispatch.bind(props.store)}
                            />}/>
-                    <Route path={'/profile'}
+                    <Route path={'/profile/:userId?'}
                            render={() => <ProfileContainer
                                // store={props.store}
                                // profilePage={props.store.getState().profilePage}

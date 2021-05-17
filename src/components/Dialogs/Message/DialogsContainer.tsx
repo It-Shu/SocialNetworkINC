@@ -1,4 +1,4 @@
-import { RootStateType} from "../../../redux/store";
+import {RootStateType} from "../../../redux/dialogs-reducer";
 import {sendMessageAC, updateNewMessageTextAC} from "../../../redux/dialogs-reducer";
 import {Dialogs} from "../Dialogs";
 import {connect} from "react-redux";

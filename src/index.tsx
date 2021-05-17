@@ -5,7 +5,7 @@ import store from "./redux/redux-store";
 /*import {addMessage, addPost, RootStateType, updateNewPostText} from "./redux/state";*/
 import ReactDOM from "react-dom";
 import App from "./App";
-import {RootStateType} from "./redux/store";
+// import {RootStateType} from "./redux/dialogs-reducer";
 import {Provider} from 'react-redux';
 /*
 
