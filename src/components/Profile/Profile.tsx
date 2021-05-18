@@ -1,7 +1,7 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
 import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
-import {ProfileUsersType} from "../../redux/profile-reducer";
+import {DescriptionsType, ProfileUsersType} from "../../redux/profile-reducer";
 
 type ProfilePropsType = {
     //store: ReducersStoreType
@@ -10,6 +10,7 @@ type ProfilePropsType = {
     // profilePage: ProfileType
     // dispatch: (action: ActionsTypes) => void
     profile: ProfileUsersType
+
 }
 
 

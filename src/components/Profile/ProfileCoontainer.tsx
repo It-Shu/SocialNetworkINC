@@ -16,7 +16,6 @@ type WithRouterPropsType = RouteComponentProps<PathParamTypes> & OwnProfileType
 
 type mapStatePropsType = {
     profile: ProfileUsersType
-    description: DescriptionsType
 }
 
 type mapDispatchPropsType = {
@@ -41,7 +40,7 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
     render() {
         return (
             <div>
-                <Profile profile={this.props.profile}/>
+                <Profile profile={this.props.profile} />
             </div> // profile any !!!!!!!
         )
     }
@@ -49,7 +48,6 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
 
 const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
     profile: state.profilePage.profile,
-    description: state.profilePage.description
 })
 
 let withUrlDataContainerComponent = withRouter(ProfileContainer)

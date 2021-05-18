@@ -9,6 +9,7 @@ import {BrowserRouter, Route} from "react-router-dom"
 import {DialogsContainer} from "./components/Dialogs/Message/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileCoontainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 /*type AppType = {
@@ -32,7 +33,7 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialog'}

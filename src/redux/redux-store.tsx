@@ -4,6 +4,7 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 // import {ActionsTypes, RootStateType} from "./store";
 import {usersReducer} from "./users-reducer";
+import {authReducer} from "./auth-reducer";
 
 /*export type ReducersStoreType = {
     getState: () => RootStateType
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     users: usersReducer,
+    auth: authReducer,
 })
 export type AppStateType = ReturnType<typeof rootReducer>
 

@@ -13,7 +13,7 @@ export type ProfileType = {
     posts: Array<PostType>
     newPostText: string
     profile: null
-    description: DescriptionsType
+    description: null
 }
 
 type ProfileUsersContact = {
@@ -44,21 +44,23 @@ export type ProfileUsersType = {
 
 // Descriptions types
 
+type ContactsDescriptionType = {
+    github: string,
+    vk: string,
+    facebook: string,
+    instagram: string,
+    twitter: string,
+    website: string,
+    youtube: string,
+    mainLink: string,
+}
+
 export type DescriptionsType = {
     userId: number,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
-    contacts: {
-        github: string,
-        vk: string,
-        facebook: string,
-        instagram: string,
-        twitter: string,
-        website: string,
-        youtube: string,
-        mainLink: string,
-    }
+    contacts: ContactsDescriptionType
 }
 
 
@@ -70,22 +72,8 @@ let initialState: ProfileType = {
     ],
     newPostText: '',
     profile: null,
-    description: {
-        userId: 2,
-        lookingForAJob: true,
-        lookingForAJobDescription: '',
-        fullName: '',
-        contacts: {
-            github: 'string',
-            vk: 'string',
-            facebook: 'string',
-            instagram: 'string',
-            twitter: 'string',
-            website: 'string',
-            youtube: 'string',
-            mainLink: 'string',
-        }
-    }
+    description: null
+
 }
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {
