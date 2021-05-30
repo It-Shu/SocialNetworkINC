@@ -1,3 +1,5 @@
+import {followAPI, unFollowAPI, usersAPI} from "../api/Api";
+
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
@@ -98,10 +100,10 @@ export const usersReducer = (state: initialStateType = initialState, action: Use
     }
 }
 
-export const follow = (userId: number) => ({
+export const followSuccess = (userId: number) => ({
     type: FOLLOW, userId
 } as const)
-export const unfollow = (userId: number) => ({
+export const unfollowSuccess = (userId: number) => ({
     type: UNFOLLOW, userId
 } as const)
 export const setUsers = (users: Array<UserType>) => ({
@@ -129,10 +131,56 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) =
 
 
 type UsersActionsType =
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleIsFollowingProgress>
+
+// ThunkCreators
+export const getUsers = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => { // then is promise !!!!
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+
+        });
+    }
+}
+
+export const follow = (id: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(toggleIsFollowingProgress(true, id))
+        followAPI.getFollowUsers(id)
+            .then(data => { // then is promise !!!!
+                if (data.resultCode === 0) {
+                    dispatch(followSuccess(id))
+                }
+                toggleIsFollowingProgress(false, id)
+            });
+    }
+}
+
+export const unFollow = (id: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(toggleIsFollowingProgress(true, id))
+        unFollowAPI.getUnFollowUsers(id)
+            .then(data => { // then is promise !!!!
+                if (data.resultCode === 0) {
+                    dispatch(unfollowSuccess(id))
+                }
+                toggleIsFollowingProgress(false, id)
+            });
+    }
+}

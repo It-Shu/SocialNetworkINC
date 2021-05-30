@@ -1,4 +1,4 @@
-import React from "react";
+import {headerAPI} from "../api/Api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -19,7 +19,7 @@ let initialState: initialStateType = {
 
 export const authReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
-        case "SET_USER_DATA": {
+        case SET_USER_DATA: {
             return {
                 ...state,
                 ...action.data,
@@ -34,5 +34,20 @@ export const authReducer = (state = initialState, action: ActionsType) => {
 type ActionsType = ReturnType<typeof setAuthUserData>
 
 export const setAuthUserData = (id: number, email: string, login: string) => {
-    return {type: 'SET_USER_DATA', data: {id, email, login}}
+    return {type: SET_USER_DATA, data: {id, email, login}}
+}
+
+export const authMe = (id: number, email: string, login: string) => {
+
+    return (dispatch: any) => {
+
+        dispatch(setAuthUserData(id, email, login));
+        headerAPI.getAuthMe()
+            .then(data => { // then is promise !!!!
+                if (data.resultCode === 0) {
+                    dispatch(setAuthUserData(id, email, login))
+                }
+                setAuthUserData(id, email, login)
+            });
+    }
 }

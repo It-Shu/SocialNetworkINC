@@ -1,3 +1,7 @@
+import {profileAPI, unFollowAPI} from "../api/Api";
+import {toggleIsFollowingProgress, unfollowSuccess} from "./users-reducer";
+import axios from "axios";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -12,8 +16,9 @@ export type PostType = {
 export type ProfileType = {
     posts: Array<PostType>
     newPostText: string
-    profile: null
-    description: null
+    profile: null | ProfileUsersType
+    description: null | string
+    userId: number | null
 }
 
 type ProfileUsersContact = {
@@ -25,6 +30,7 @@ type ProfileUsersContact = {
     youtube: null,
     github: string,
     mainLink: null
+
 }
 
 type PhotosType = {
@@ -72,8 +78,8 @@ let initialState: ProfileType = {
     ],
     newPostText: '',
     profile: null,
-    description: null
-
+    description: null,
+    userId: null
 }
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {
@@ -105,7 +111,7 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
             }
             // newState.newPostText = action.newText;
         }
-        case "SET_USER_PROFILE": {
+        case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
         default:
@@ -123,7 +129,7 @@ export const updateNewPostTextAC = (newText: string) => ({
     newText: newText
 }) as const
 
-export const setUserProfile = (profile: any) => ({
+export const setUserProfile = (profile: ProfileUsersType) => ({
     type: SET_USER_PROFILE,
     profile
 }) as const
@@ -134,3 +140,29 @@ type ProfileActionsType =
     | ReturnType<typeof setUserProfile>
 
 export default profileReducer;
+
+/*
+export const getProfile = (userId: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(setUserProfile(userId))
+        if (!userId) {
+            userId = 2;
+        }
+        profileAPI.getProfile(userId)
+            .then(response => { // then is promise !!!!
+                setUserProfile(response.data)
+            });
+    }
+}*/
+
+
+export const getUsersProfile = (userId: number) => {
+    return (dispatch: any) => {
+        profileAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response))
+            })
+    }
+}
