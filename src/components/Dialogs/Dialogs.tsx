@@ -3,14 +3,14 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./Dialogitem/Dialogitem";
 import {DialogsType} from "../../redux/dialogs-reducer";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 export type DialogsPropsType = {
-   // store: ReducersStoreType
-   // state: DialogsType
+    // store: ReducersStoreType
+    // state: DialogsType
     // addMessage: (messageText: string) => void
     // newMessageText: string
-        // dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
     dialogsPage: DialogsType
@@ -33,7 +33,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     const onNewMessageClick = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.currentTarget.value
         props.updateNewMessageBody(body)
-       // props.store.dispatch(updateNewMessageTextCreator(body))
+        // props.store.dispatch(updateNewMessageTextCreator(body))
     }
 
     let state = props.dialogsPage
@@ -42,7 +42,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = state.messages.map(m => <Message message={m.message}/>)
     let newMessageText = state.newMessageText
 
-   // if (!props.isAuth) return <Redirect to={'/login'}/>
+    // if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>

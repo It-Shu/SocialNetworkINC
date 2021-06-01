@@ -9,14 +9,14 @@ import {WithAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type MapStatePropsType = {
-   // isAuth: boolean
+    // isAuth: boolean
     dialogsPage: DialogsType
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage,
-      //  isAuth: state.auth.isAuth,
+        //  isAuth: state.auth.isAuth,
     }
 }
 const mapDispatchToProps = (dispatch: any) => {
@@ -43,21 +43,6 @@ export default compose<ComponentType>(
     WithAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
 )(Dialogs)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*type DialogsContainerPropsType = {
