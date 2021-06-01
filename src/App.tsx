@@ -8,8 +8,9 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom"
 import {DialogsContainer} from "./components/Dialogs/Message/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileCoontainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/login";
 
 
 /*type AppType = {
@@ -18,6 +19,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
     addMessage: (messageText: string) => void
     updateNewPostText: (newText: string) => void
 }*/
+
 /*type AppType = {
     store: ReducersStoreType
     state: RootStateType
@@ -56,6 +58,7 @@ const App/*: React.FC<AppType> */ = (/*props*/) => {
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/setting'} render={() => <Settings/>}/>
                     <Route path={'/users'} render={() => <UsersContainer/>}/>
+                    <Route path={'/login'} render={() => <Login/>}/>
                 </div>
             </div>
         </BrowserRouter>

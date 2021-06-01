@@ -1,5 +1,6 @@
 import {ProfileType} from "./profile-reducer";
 import { SidebarType } from "./sidebar-reducer";
+import {AppStateType} from "./redux-store";
 
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE"
@@ -9,6 +10,7 @@ export type RootStateType = {
     profilePage: ProfileType
     dialogsPage: DialogsType
     sidebar: SidebarType
+    // auth: AppStateType
 }
 
 type MessageType = {
