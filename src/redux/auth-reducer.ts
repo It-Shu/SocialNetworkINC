@@ -41,13 +41,14 @@ export const authMe = (id: number, email: string, login: string) => {
 
     return (dispatch: any) => {
 
-        dispatch(setAuthUserData(id, email, login));
+        // dispatch(setAuthUserData(id, email, login));
         headerAPI.getAuthMe()
             .then(data => { // then is promise !!!!
+                console.log(data)
                 if (data.resultCode === 0) {
                     dispatch(setAuthUserData(id, email, login))
                 }
-                setAuthUserData(id, email, login)
+                // setAuthUserData(id, email, login)
             });
     }
 }

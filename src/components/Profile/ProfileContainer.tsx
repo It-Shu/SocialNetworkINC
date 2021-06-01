@@ -45,6 +45,7 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
     }
 
     render() {
+        // alert(this.props.isAuth)
         if(!this.props.isAuth) return <Redirect to={'/login'}/>;
         if (!this.props.profile) {
             return <div>
