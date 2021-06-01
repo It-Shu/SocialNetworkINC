@@ -42,7 +42,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = state.messages.map(m => <Message message={m.message}/>)
     let newMessageText = state.newMessageText
 
-   if (!props.isAuth) return <Redirect to={'/login'}/>
+   // if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>

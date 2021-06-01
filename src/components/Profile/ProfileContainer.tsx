@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUsersProfile, ProfileUsersType, setUserProfile} from "../../redux/profile-reducer";
-import {Redirect, withRouter} from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
+import {getUsersProfile, ProfileUsersType} from "../../redux/profile-reducer";
+import {withRouter} from 'react-router-dom';
+import {RouteComponentProps} from 'react-router';
 import Preloader from "../common/Preloader/Preloader";
+import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 type PathParamTypes = {
@@ -17,11 +19,11 @@ type WithRouterPropsType = RouteComponentProps<PathParamTypes> & OwnProfileType
 type mapStatePropsType = {
     profile: ProfileUsersType | null
     userId: number | null
-    isAuth: boolean
+    // isAuth: boolean
 }
 
 type mapDispatchPropsType = {
-    setUserProfile: (profile: ProfileUsersType) => void
+    // setUserProfile: (profile: ProfileUsersType) => void
     getUsersProfile: (userId: number) => void
 
 }
@@ -38,15 +40,13 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
         }
         this.props.getUsersProfile(userId)
 
-       /* axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => { // then is promise !!!!
-                this.props.setUserProfile(response.data)
-            });*/
+        /* axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+             .then(response => { // then is promise !!!!
+                 this.props.setUserProfile(response.data)
+             });*/
     }
 
     render() {
-        // alert(this.props.isAuth)
-        if(!this.props.isAuth) return <Redirect to={'/login'}/>;
         if (!this.props.profile) {
             return <div>
                 <Preloader/>
@@ -54,8 +54,8 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
         }
         return (
             <div>
-                <Profile profile={this.props.profile} />
-            </div> // profile any !!!!!!!
+                <Profile profile={this.props.profile}/>
+            </div>
         )
     }
 }
@@ -63,9 +63,16 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
 const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
     profile: state.profilePage.profile,
     userId: state.profilePage.userId,
-    isAuth: state.auth.isAuth
 })
 
+/*
 let withUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile, getUsersProfile})(withUrlDataContainerComponent);
+export const WithAuthRedirect(connect(mapStateToProps, {getUsersProfile})(withUrlDataContainerComponent));
+*/
+
+export default compose<ComponentType>(
+    connect(mapStateToProps, {getUsersProfile}),
+    withRouter,
+    WithAuthRedirect
+)(ProfileContainer)
