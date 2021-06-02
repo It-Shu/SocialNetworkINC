@@ -1,10 +1,11 @@
-import {profileAPI, unFollowAPI} from "../api/Api";
+import {profileAPI, statusAPI, unFollowAPI} from "../api/Api";
 import {toggleIsFollowingProgress, unfollowSuccess} from "./users-reducer";
 import axios from "axios";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS_PROFILE = "SET_USER_STATUS_PROFILE";
 
 // Profile types
 export type PostType = {
@@ -19,6 +20,7 @@ export type ProfileType = {
     profile: null | ProfileUsersType
     description: null | string
     userId: number | null
+
 }
 
 type ProfileUsersContact = {
@@ -79,7 +81,8 @@ let initialState: ProfileType = {
     newPostText: '',
     profile: null,
     description: null,
-    userId: null
+    userId: null,
+
 }
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {
@@ -114,6 +117,7 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
+
         default:
             return state
     }
@@ -134,10 +138,16 @@ export const setUserProfile = (profile: ProfileUsersType) => ({
     profile
 }) as const
 
+export const setUserStatusProfile = (status: UserProfileStatusType) => ({
+    type: SET_USER_STATUS_PROFILE,
+    status
+}) as const
+
 type ProfileActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatusProfile>
 
 export default profileReducer;
 
@@ -157,6 +167,11 @@ export const getProfile = (userId: number) => {
     }
 }*/
 
+export type UserProfileStatusType = {
+    MediaType: string
+    Type: any
+}
+
 
 export const getUsersProfile = (userId: number) => {
     return (dispatch: any) => {
@@ -166,3 +181,12 @@ export const getUsersProfile = (userId: number) => {
             })
     }
 }
+
+/*export const getStatusProfile = (userId: number) => {
+    return (dispatch: any) => {
+        statusAPI.getStatus(userId)
+            .then(response => {
+                dispatch(setUserStatusProfile(response))
+            })
+    }
+}*/

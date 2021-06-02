@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileType, ProfileUsersType} from "../redux/profile-reducer";
+import {ProfileUsersType, UserProfileStatusType} from "../redux/profile-reducer";
 
 
 const Instance = axios.create({
@@ -43,6 +43,13 @@ export const headerAPI = {
 export const profileAPI = {
     getProfile(userId: number) {
         return Instance.get<ProfileUsersType>(`profile/${userId}`)
+            .then(response => response.data)
+    }
+}
+
+export const statusAPI = {
+    getStatus(userId: number) {
+        return Instance.get<UserProfileStatusType>(`profile/status/${userId}`)
             .then(response => response.data)
     }
 }
