@@ -1,7 +1,7 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
 import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
-import {DescriptionsType, ProfileUsersType} from "../../redux/profile-reducer";
+import {DescriptionsType, ProfileUsersType, UpdateStatusUserType} from "../../redux/profile-reducer";
 
 type ProfilePropsType = {
     //store: ReducersStoreType
@@ -10,6 +10,9 @@ type ProfilePropsType = {
     // profilePage: ProfileType
     // dispatch: (action: ActionsTypes) => void
     profile: ProfileUsersType
+    // status: UpdateStatusUserType | null
+    status: string
+    updateStatus: (status: string) => void
 
 }
 
@@ -18,7 +21,7 @@ export const Profile = (props: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer
                 // store={props.store}
                 // posts={props.profilePage.posts}

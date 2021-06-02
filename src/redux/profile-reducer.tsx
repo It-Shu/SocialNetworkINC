@@ -1,11 +1,10 @@
-import {profileAPI, statusAPI, unFollowAPI} from "../api/Api";
-import {toggleIsFollowingProgress, unfollowSuccess} from "./users-reducer";
-import axios from "axios";
+import {profileAPI} from "../api/Api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS_PROFILE = "SET_USER_STATUS_PROFILE";
+const SET_USER_STATUS = "SET_USER_STATUS";
+// const UPDATE_USER_STATUS = "UPDATE_USER_STATUS";
 
 // Profile types
 export type PostType = {
@@ -20,6 +19,8 @@ export type ProfileType = {
     profile: null | ProfileUsersType
     description: null | string
     userId: number | null
+    // status: UpdateStatusUserType | null
+    status: string
 
 }
 
@@ -82,6 +83,7 @@ let initialState: ProfileType = {
     profile: null,
     description: null,
     userId: null,
+    status: '',
 
 }
 
@@ -117,7 +119,12 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
-
+        case SET_USER_STATUS: {
+            return {...state, status: action.status}
+        }
+       /* case UPDATE_USER_STATUS: {
+            return {...state, status: action.status}
+        }*/
         default:
             return state
     }
@@ -138,39 +145,36 @@ export const setUserProfile = (profile: ProfileUsersType) => ({
     profile
 }) as const
 
-export const setUserStatusProfile = (status: UserProfileStatusType) => ({
-    type: SET_USER_STATUS_PROFILE,
+export const setUserStatus = (status: string) => ({
+    type: SET_USER_STATUS,
     status
 }) as const
+
+/*export const updateUserStatus = (status: UpdateStatusUserType) => ({
+    type: UPDATE_USER_STATUS,
+    status
+}) as const*/
 
 type ProfileActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setUserStatusProfile>
+    | ReturnType<typeof setUserStatus>
+   // | ReturnType<typeof updateUserStatus>
 
 export default profileReducer;
 
-/*
-export const getProfile = (userId: number) => {
+// Thunks
 
-    return (dispatch: any) => {
-
-        dispatch(setUserProfile(userId))
-        if (!userId) {
-            userId = 2;
-        }
-        profileAPI.getProfile(userId)
-            .then(response => { // then is promise !!!!
-                setUserProfile(response.data)
-            });
-    }
+/*export type GetStatusUserType = {
+    userId: number
 }*/
-
-export type UserProfileStatusType = {
-    MediaType: string
-    Type: any
+export type UpdateStatusUserType = {
+    status: string
+    userId: number
+    resultCode: number
 }
+
 
 
 export const getUsersProfile = (userId: number) => {
@@ -182,11 +186,22 @@ export const getUsersProfile = (userId: number) => {
     }
 }
 
-/*export const getStatusProfile = (userId: number) => {
+export const getStatus = (userId: number) => {
     return (dispatch: any) => {
-        statusAPI.getStatus(userId)
+        profileAPI.getStatus(userId)
             .then(response => {
-                dispatch(setUserStatusProfile(response))
+
+                dispatch(setUserStatus(response))
             })
     }
-}*/
+}
+
+export const updateStatus = (status: string) => (dispatch: any) => {
+        profileAPI.updateStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserStatus(status))
+                }
+            })
+
+}

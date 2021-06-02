@@ -1,6 +1,5 @@
 import axios from "axios";
-import {ProfileUsersType, UserProfileStatusType} from "../redux/profile-reducer";
-
+import {ProfileType, ProfileUsersType, UpdateStatusUserType} from "../redux/profile-reducer";
 
 const Instance = axios.create({
     withCredentials: true,
@@ -44,12 +43,13 @@ export const profileAPI = {
     getProfile(userId: number) {
         return Instance.get<ProfileUsersType>(`profile/${userId}`)
             .then(response => response.data)
-    }
-}
-
-export const statusAPI = {
+    },
     getStatus(userId: number) {
-        return Instance.get<UserProfileStatusType>(`profile/status/${userId}`)
+        return Instance.get<string>(`profile/status/${userId}`)
             .then(response => response.data)
+    },
+    updateStatus(status: string) {
+        return Instance.put<UpdateStatusUserType>(`profile/status`, {status})
+           // .then(response => response.data)
     }
 }

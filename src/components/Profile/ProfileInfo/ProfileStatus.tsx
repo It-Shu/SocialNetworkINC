@@ -1,6 +1,8 @@
 import React from 'react';
+import {UpdateStatusUserType} from "../../../redux/profile-reducer";
 
 type ProfileStatusType = {
+   // status: UpdateStatusUserType | null
     status: string
 }
 

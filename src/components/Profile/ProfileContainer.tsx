@@ -2,7 +2,13 @@ import React, {ComponentType} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUsersProfile, ProfileUsersType} from "../../redux/profile-reducer";
+import {
+    getStatus,
+    getUsersProfile,
+    ProfileUsersType,
+    updateStatus,
+    UpdateStatusUserType
+} from "../../redux/profile-reducer";
 import {withRouter} from 'react-router-dom';
 import {RouteComponentProps} from 'react-router';
 import Preloader from "../common/Preloader/Preloader";
@@ -18,15 +24,15 @@ type WithRouterPropsType = RouteComponentProps<PathParamTypes> & OwnProfileType
 type mapStatePropsType = {
     profile: ProfileUsersType | null
     userId: number | null
-   // status: string | null
-    // isAuth: boolean
+    // status: UpdateStatusUserType | null
+    status: string
 }
 
-type mapDispatchPropsType = {
-    // setUserProfile: (profile: ProfileUsersType) => void
-    getUsersProfile: (userId: number) => void
-    getUsersStatusProfile: (userId: number) => void
 
+type mapDispatchPropsType = {
+    getUsersProfile: (userId: number) => void
+    getStatus: (userId: number) => void
+    updateStatus: (status: string) => void
 }
 
 type OwnProfileType = mapStatePropsType & mapDispatchPropsType
@@ -40,7 +46,8 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
             userId = this.props.userId;
         }
         this.props.getUsersProfile(userId)
-        // this.props.getUsersStatusProfile(userId)
+        this.props.getStatus(userId)
+        //this.props.updateStatus(status)
 
         /* axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
              .then(response => { // then is promise !!!!
@@ -56,7 +63,7 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
         }
         return (
             <div>
-                <Profile profile={this.props.profile}/>
+                <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
             </div>
         )
     }
@@ -65,6 +72,7 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
 const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
     profile: state.profilePage.profile,
     userId: state.profilePage.userId,
+    status: state.profilePage.status
 })
 
 /*
@@ -74,7 +82,7 @@ export const WithAuthRedirect(connect(mapStateToProps, {getUsersProfile})(withUr
 */
 
 export default compose<ComponentType>(
-    connect(mapStateToProps, {getUsersProfile}),
+    connect(mapStateToProps, {getUsersProfile, getStatus, updateStatus}),
     withRouter,
    // WithAuthRedirect
 )(ProfileContainer)
