@@ -13,6 +13,7 @@ import {withRouter} from 'react-router-dom';
 import {RouteComponentProps} from 'react-router';
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 type PathParamTypes = {
@@ -89,5 +90,5 @@ export const WithAuthRedirect(connect(mapStateToProps, {getUsersProfile})(withUr
 export default compose<ComponentType>(
     connect(mapStateToProps, {getUsersProfile, getStatus, updateStatus}),
     withRouter,
-    // WithAuthRedirect
+    WithAuthRedirect
 )(ProfileContainer)

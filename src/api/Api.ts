@@ -53,3 +53,9 @@ export const profileAPI = {
            // .then(response => response.data)
     }
 }
+
+export const loginAPI = {
+    updateLogin(){
+        return Instance.post('login/', {})
+    }
+}
