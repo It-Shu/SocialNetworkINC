@@ -46,7 +46,11 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
             userId = this.props.userId;
         }
         this.props.getUsersProfile(userId)
+
+
+        // setTimeout(()=> {
         this.props.getStatus(userId)
+        // }, 2000)
         //this.props.updateStatus(status)
 
         /* axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
@@ -63,7 +67,8 @@ class ProfileContainer extends React.Component <WithRouterPropsType> {
         }
         return (
             <div>
-                <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+                <Profile profile={this.props.profile} status={this.props.status}
+                         updateStatus={this.props.updateStatus}/>
             </div>
         )
     }
@@ -84,5 +89,5 @@ export const WithAuthRedirect(connect(mapStateToProps, {getUsersProfile})(withUr
 export default compose<ComponentType>(
     connect(mapStateToProps, {getUsersProfile, getStatus, updateStatus}),
     withRouter,
-   // WithAuthRedirect
+    // WithAuthRedirect
 )(ProfileContainer)
