@@ -3,6 +3,8 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostType} from "../../../redux/profile-reducer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators";
+import {Textarea} from "../../common/FormsControls/FormsControls";
 
 type MyPostPropsType = {
     posts: Array<PostType>
@@ -49,11 +51,13 @@ export const MyPosts = (props: MyPostPropsType) => {
     </div>
 }
 
+const maxLength10 = maxLengthCreator(10)
+
 const AddNewPostForm: React.FC<InjectedFormProps<PostType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component='textarea' name='newPostText' placeholder='Enter your post'
+                <Field component={Textarea} name='newPostText' placeholder='Enter your post' validate={[required, maxLength10]}
                        className={s.textareaMassage}/>
             </div>
             <div>

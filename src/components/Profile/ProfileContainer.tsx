@@ -6,8 +6,7 @@ import {
     getStatus,
     getUsersProfile,
     ProfileUsersType,
-    updateStatus,
-    UpdateStatusUserType
+    updateStatus
 } from "../../redux/profile-reducer";
 import {withRouter} from 'react-router-dom';
 import {RouteComponentProps} from 'react-router';
