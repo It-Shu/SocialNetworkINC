@@ -1,5 +1,5 @@
-import profileReducer, {addPostAC, ProfileType, updateNewPostTextAC} from "./profile-reducer";
-import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
+import profileReducer, {addPostAC, ProfileType} from "./profile-reducer";
+import dialogsReducer, {sendMessageAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {followSuccess, setUsers, unfollowSuccess} from "./users-reducer";
 

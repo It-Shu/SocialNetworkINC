@@ -1,6 +1,6 @@
 import {MyPosts} from "../MyPosts";
 import {RootStateType} from "../../../../redux/dialogs-reducer";
-import {addPostAC, updateNewPostTextAC} from "../../../../redux/profile-reducer";
+import {addPostAC} from "../../../../redux/profile-reducer";
 import store from "../../../../redux/redux-store";
 import {connect} from "react-redux";
 
@@ -8,20 +8,20 @@ import {connect} from "react-redux";
 const mapStateToProps = (state: RootStateType) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
+        // newPostText: state.profilePage.newPostText,
         description: state.profilePage.description
 
     }
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        addPost: () => {
-            dispatch(addPostAC(store.getState().profilePage.newPostText))
-
+        addPost: (newPostText: string) => {
+            dispatch(addPostAC(newPostText))
+            //store.getState().profilePage.newPostText,
         },
-        updateNewPostText: (newText: string) => {
-            dispatch(updateNewPostTextAC(newText))
-        }
+        // updateNewPostText: (newText: string) => {
+        //     dispatch(updateNewPostTextAC(newText))
+        // }
     }
 }
 

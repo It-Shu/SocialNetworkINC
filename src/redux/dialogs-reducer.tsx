@@ -2,7 +2,7 @@ import {ProfileType} from "./profile-reducer";
 import { SidebarType } from "./sidebar-reducer";
 import {AppStateType} from "./redux-store";
 
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+// const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE"
 
 
@@ -27,7 +27,6 @@ export type DialogType = {
 export type DialogsType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
-    newMessageText: string
 }
 
 let initialState: DialogsType = {
@@ -40,25 +39,21 @@ let initialState: DialogsType = {
         {id: 2, message: 'I Love you'},
         {id: 3, message: 'Soo mach'}
     ],
-
-    newMessageText: '',
-
 }
 
 const dialogsReducer = (state = initialState, action: DialogActionsType) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT: {
-           return  {
-                ...state,
-                newMessageText: action.body
-            }
-        }
+        // case UPDATE_NEW_MESSAGE_TEXT: {
+        //    return  {
+        //         ...state,
+        //         newMessageText: action.body
+        //     }
+        // }
 
         case SEND_MESSAGE: {
-            let body = state.newMessageText
+            let body = action.newMessageText
             return {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, {
                     id: new Date().getTime(),
                     message: body
@@ -77,16 +72,16 @@ const dialogsReducer = (state = initialState, action: DialogActionsType) => {
     }
 }
 
-export const updateNewMessageTextAC = (body: string) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    body
+// export const updateNewMessageTextAC = (body: string) => ({
+//     type: UPDATE_NEW_MESSAGE_TEXT,
+//     body
+// }) as const
+
+export const sendMessageAC = (newMessageText: string) => ({
+    type: SEND_MESSAGE, newMessageText
 }) as const
 
-export const sendMessageAC = () => ({
-    type: SEND_MESSAGE
-}) as const
 
-
-type DialogActionsType = ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof sendMessageAC>
+type DialogActionsType = | ReturnType<typeof sendMessageAC>
 
     export default dialogsReducer;

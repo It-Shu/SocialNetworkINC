@@ -1,6 +1,8 @@
-import {headerAPI} from "../api/Api";
+import {headerAPI, loginAPI} from "../api/Api";
+import {Dispatch} from "react";
 
 const SET_USER_DATA = 'SET_USER_DATA'
+const SET_LOGIN = 'SET_LOGIN'
 
 type initialStateType = {
     id: number
@@ -26,12 +28,18 @@ export const authReducer = (state = initialState, action: ActionsType) => {
                 isAuth: true
             }
         }
+        case SET_LOGIN: {
+            return {
+                ...state,
+            }
+        }
         default:
             return state
     }
 }
 
 type ActionsType = ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof setLogin>
 
 export const setAuthUserData = (id: number, email: string, login: string) => {
     return {type: SET_USER_DATA, data: {id, email, login}}
@@ -51,4 +59,17 @@ export const authMe = (id: number, email: string, login: string) => {
                 // setAuthUserData(id, email, login)
             });
     }
+}
+
+export const setLogin = (email: string, password: string, rememberMe: boolean, captcha?: boolean) => {
+    return {type: SET_LOGIN, data: {email, password, rememberMe, captcha}}
+}
+
+export const login = (email: string, password: string, rememberMe: boolean, captcha?: boolean) => (dispatch: Dispatch<any>) => {
+    loginAPI.updateLogin()
+        .then(data =>{
+            if (data.data.resultCode === 0) {
+                dispatch(setLogin(email, password, rememberMe, captcha))
+            }
+        })
 }
