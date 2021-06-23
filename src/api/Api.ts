@@ -55,7 +55,10 @@ export const profileAPI = {
 }
 
 export const loginAPI = {
-    updateLogin(){
-        return Instance.post('login/', {})
+    updateLogin(email: string, password: string, rememberMe: boolean){
+        return Instance.post('auth/login', {email, password, rememberMe})
+    },
+    Logout(){
+        return Instance.delete('auth/login' )
     }
 }
