@@ -2,7 +2,8 @@ import React from "react";
 import {reduxForm, Field, InjectedFormProps} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators";
-import {Redirect} from "react-router-dom";
+import {postLogin} from "../../redux/auth-reducer";
+import { connect } from "react-redux";
 
 type FormDataType = {
     email: string
@@ -50,4 +51,4 @@ export const Login = (props: LoginPropsType) => {
 }
 
 
-// export default connect(null, {postLogin})(Login)
+export default connect(null, {postLogin})(Login)
