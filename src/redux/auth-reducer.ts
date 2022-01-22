@@ -47,14 +47,14 @@ export const authMe = () => {
 
     return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
 
-        // dispatch(setAuthUserData(id, email, login));
+
         return  headerAPI.getAuthMe()
-            .then(res => { // then is promise !!!!
+            .then(res => {
                 if (res.data.resultCode === 0) {
                     let {id, email, login} = res.data.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }
-                // setAuthUserData(id, email, login)
+
             });
     }
 }
