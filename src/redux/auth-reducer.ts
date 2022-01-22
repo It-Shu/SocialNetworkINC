@@ -23,13 +23,13 @@ let initialState: initialStateType = {
 export const authReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case SET_USER_DATA: {
-            debugger
             return {
                 ...state,
-                id: action.payload.id,
-                email: action.payload.email,
-                login: action.payload.login,
-                isAuth: action.payload.isAuth
+                // id: action.payload.id,
+                // email: action.payload.email,
+                // login: action.payload.login,
+                ...action.payload,
+                isAuth: true//action.payload.isAuth
             }
         }
         default:
@@ -47,14 +47,12 @@ export const authMe = () => {
 
     return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
 
-
         return  headerAPI.getAuthMe()
             .then(res => {
                 if (res.data.resultCode === 0) {
                     let {id, email, login} = res.data.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }
-
             });
     }
 }

@@ -19,6 +19,7 @@ class ContainerLogin extends React.Component<any, any> {
         }
         return <Login
             login={this.props.postLogin}
+            isAuth={this.props.isAuth}
         />;
 
     }
