@@ -16,7 +16,7 @@ let initialState: initialStateType = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
 }
 
 
@@ -40,7 +40,7 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
 type ActionsType = ReturnType<typeof setAuthUserData>
 
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => {
-    return {type: SET_USER_DATA, payload: {id, email, login, isAuth}}
+    return {type: SET_USER_DATA, payload: {id, email, login, isAuth}} as const
 }
 
 export const authMe = () => {
@@ -51,7 +51,6 @@ export const authMe = () => {
         return  headerAPI.getAuthMe()
             .then(res => { // then is promise !!!!
                 if (res.data.resultCode === 0) {
-                    debugger
                     let {id, email, login} = res.data.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }

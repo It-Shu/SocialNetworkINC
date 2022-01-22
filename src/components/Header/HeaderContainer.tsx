@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {authMe, setAuthUserData} from "../../redux/auth-reducer";
+import {authMe, deleteLogout, setAuthUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 type mapStatePropsType = {
@@ -9,7 +9,6 @@ type mapStatePropsType = {
     login: string | null
     id: number | null
     email: string | null
-
 }
 
 type mapDispatchLogInPropsType = {
@@ -37,7 +36,7 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
     email: state.auth.email,
-    id: state.auth.id
+    id: state.auth.id,
 })
 
-export default connect(mapStateToProps, {setAuthUserData, authMe})(HeaderContainer)
+export default connect(mapStateToProps, {setAuthUserData, authMe, deleteLogout})(HeaderContainer)

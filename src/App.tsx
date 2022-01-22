@@ -10,9 +10,6 @@ import DialogsContainer from "./components/Dialogs/Message/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/login";
-import login from './components/Login/login';
-import {postLogin} from "./redux/auth-reducer";
 import ContainerLogin from "./components/Login/ContainerLogin";
 
 

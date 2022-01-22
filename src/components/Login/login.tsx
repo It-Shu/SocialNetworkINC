@@ -2,8 +2,7 @@ import React from "react";
 import {reduxForm, Field, InjectedFormProps} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators";
-import {connect} from "react-redux";
-import {postLogin} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
 type FormDataType = {
     email: string
@@ -40,15 +39,15 @@ type LoginPropsType = {
 }
 
 
-const Login = (props: LoginPropsType) => {
+export const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-
-    return <div>
-        <h1>login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
-    </div>
+        return <div>
+            <h1>login</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
+        </div>
 }
 
-export default connect(null, {postLogin})(Login)
+
+// export default connect(null, {postLogin})(Login)
