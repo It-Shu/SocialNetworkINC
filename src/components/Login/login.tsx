@@ -58,7 +58,7 @@ export const Login = (props: LoginPropsType) => {
         </div>
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType) => ({
   isAuth: state.auth.isAuth
 })
 
